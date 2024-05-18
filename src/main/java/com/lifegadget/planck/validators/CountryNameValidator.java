@@ -21,6 +21,12 @@ public class CountryNameValidator implements ConstraintValidator<ValidCountryNam
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value != null && countryConstant.getCountries().contains(value) ;
+        try {
+            countryConstant = new CountryConstant();
+            return  value!=null && countryConstant.getCountries().contains(value);
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }

@@ -1,9 +1,10 @@
 package com.lifegadget.planck.database.sqlModels;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,6 +16,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "links")
 public class Link {
 
@@ -25,14 +28,17 @@ public class Link {
     @Column(nullable = false, length = 1000, name = "original_link")
     private String originalLink;
 
-    @Column(nullable = false, length = 100, name = "short_code")
+    @Column(nullable = true, length = 100, name = "short_code")
     private String shortCode;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    @JsonBackReference
     private User user;
 
     @OneToMany(mappedBy = "link", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<LinkActivityLog> linkActivityLogs = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)

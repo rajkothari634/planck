@@ -1,13 +1,12 @@
 package com.lifegadget.planck.constants;
 
 import lombok.Getter;
-import org.springframework.context.annotation.Configuration;
-
+import org.springframework.stereotype.Component;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
-@Configuration
+@Component
+@Getter
 public class CountryConstant {
     private static final List<String> COUNTRIES = Arrays.asList(
             "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",

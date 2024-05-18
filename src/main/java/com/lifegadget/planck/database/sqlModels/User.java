@@ -1,12 +1,11 @@
 package com.lifegadget.planck.database.sqlModels;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lifegadget.planck.core.utils.customAnnotations.ValidCountryName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,6 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "users")
 public class User {
     @Id
@@ -39,20 +40,22 @@ public class User {
     @ValidCountryName
     private String country;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "role_id", nullable = false)
+    @JsonManagedReference
     private Role role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Link> links = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    private Timestamp createdAt;
+    private java.sql.Timestamp createdAt;
 
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
-    private Timestamp updatedAt;
+    private java.sql.Timestamp updatedAt;
 
 
 }

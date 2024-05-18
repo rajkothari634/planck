@@ -1,9 +1,9 @@
-package com.lifegadget.planck.database.sqlModels;
+package com.lifegadget.planck.dto;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lifegadget.planck.constants.RoleType;
 import com.lifegadget.planck.core.utils.customAnnotations.ValidCountryName;
+import com.lifegadget.planck.database.sqlModels.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -22,29 +22,14 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-@Entity
-@Table(name = "roles")
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RoleDTO {
     private Integer id;
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
     private RoleType roleName;
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
-    @JsonBackReference
     private List<User> users = new ArrayList<>();
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreationTimestamp
-    private java.sql.Timestamp createdAt;
+    private Timestamp createdAt;
 
-    @Column(name = "updated_at", nullable = false)
-    @UpdateTimestamp
-    private java.sql.Timestamp updatedAt;
+    private Timestamp updatedAt;
 }
