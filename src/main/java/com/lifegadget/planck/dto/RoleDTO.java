@@ -27,7 +27,7 @@ public class RoleDTO {
 
     private RoleType roleName;
 
-    private List<User> users = new ArrayList<>();
+    private List<UserDTO> userDTOs = new ArrayList<>();
 
     private Timestamp createdAt;
 

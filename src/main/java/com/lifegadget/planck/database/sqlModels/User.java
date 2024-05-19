@@ -1,5 +1,6 @@
 package com.lifegadget.planck.database.sqlModels;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lifegadget.planck.core.utils.customAnnotations.ValidCountryName;
 import jakarta.persistence.*;
@@ -40,13 +41,12 @@ public class User {
     @ValidCountryName
     private String country;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
-    @JsonManagedReference
     private Role role;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<Link> links = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)

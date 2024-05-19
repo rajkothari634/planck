@@ -1,8 +1,6 @@
 package com.lifegadget.planck.database.sqlModels;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -33,17 +31,15 @@ public class Link {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnore
-    @JsonBackReference
     private User user;
 
+    @JsonBackReference
     @OneToMany(mappedBy = "link", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<LinkActivityLog> linkActivityLogs = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    private java.sql.Timestamp createdAt;
+    private Timestamp createdAt;
 
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp

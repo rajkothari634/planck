@@ -2,6 +2,7 @@ package com.lifegadget.planck.database.sqlModels;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lifegadget.planck.constants.RoleType;
 import com.lifegadget.planck.core.utils.customAnnotations.ValidCountryName;
 import jakarta.persistence.*;
@@ -35,9 +36,8 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private RoleType roleName;
 
-    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonIgnore
     @JsonBackReference
+    @OneToMany(mappedBy = "role",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false, updatable = false)

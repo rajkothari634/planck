@@ -10,7 +10,7 @@ import java.security.Timestamp;
 public class LinkActivityLogDTO {
 
     private Long id;
-    private Link link;
+    private LinkDTO linkDTO;
     private String ipAddress;
     private String country;
 

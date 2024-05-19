@@ -22,9 +22,9 @@ public class LinkDTO {
 
     private String shortCode;
 
-    private User user;
+    private UserDTO userDTO;
 
-    private List<LinkActivityLog> linkActivityLogs = new ArrayList<>();
+    private List<LinkActivityLogDTO> linkActivityLogDTOs = new ArrayList<>();
 
     private java.sql.Timestamp createdAt;
 

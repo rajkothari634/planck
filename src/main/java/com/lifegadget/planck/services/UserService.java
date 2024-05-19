@@ -3,6 +3,7 @@ package com.lifegadget.planck.services;
 import com.lifegadget.planck.core.errors.DatabaseException;
 import com.lifegadget.planck.core.errors.ValidationException;
 import com.lifegadget.planck.database.sqlModels.User;
+import com.lifegadget.planck.dto.UserDTO;
 import com.lifegadget.planck.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

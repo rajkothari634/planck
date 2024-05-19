@@ -1,14 +1,10 @@
 package com.lifegadget.planck.database.sqlModels;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lifegadget.planck.core.utils.customAnnotations.ValidCountryName;
 import jakarta.persistence.*;
 import lombok.*;
-import netscape.javascript.JSObject;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.sql.Timestamp;
 
 @Data
@@ -26,8 +22,6 @@ public class LinkActivityLog {
 
     @ManyToOne
     @JoinColumn(name = "link_id", nullable = false)
-    @JsonIgnore
-    @JsonBackReference
     private Link link;
 
     @Column(name = "ip_address")
@@ -48,7 +42,7 @@ public class LinkActivityLog {
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
-    private java.sql.Timestamp createdAt;
+    private Timestamp createdAt;
 
     @Column(name = "updated_at", nullable = false)
     @UpdateTimestamp
