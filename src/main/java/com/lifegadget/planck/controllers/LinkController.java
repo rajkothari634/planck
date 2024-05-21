@@ -8,6 +8,7 @@ import com.lifegadget.planck.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,7 @@ public class LinkController {
     }
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping("/{shortCode}")
+    @Cacheable(value = "link", key = "#shortCode")
     public Link getLink(@PathVariable String shortCode){
         System.out.println("shortCode - " + shortCode);
        return linkService.getLink(shortCode);

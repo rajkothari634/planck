@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 @Data
@@ -14,7 +16,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Table(name = "link_activity_logs")
-public class LinkActivityLog {
+public class LinkActivityLog  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
