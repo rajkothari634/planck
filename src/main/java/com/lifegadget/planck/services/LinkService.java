@@ -28,10 +28,10 @@ public class LinkService {
         String shortCode = helper.createSortCode(linkId);
         linkDb.setShortCode(shortCode);
         linkRepository.save(linkDb);
-//        redisService.setData(shortCode, linkDb.getOriginalLink());
         return linkDb;
     }
 
+    @Cacheable(value = "link", key = "#shortCode")
     public Link getLink(String shortCode){
         Long linkId = helper.linkIdFromCode(shortCode);
         Optional<Link> linkOptional = linkRepository.findById(linkId);
