@@ -1,4 +1,4 @@
-package com.lifegadget.planck.repositories;
+package com.lifegadget.planck.repositories.sql;
 
 import com.lifegadget.planck.database.sqlModels.Link;
 import org.springframework.data.jpa.repository.JpaRepository;

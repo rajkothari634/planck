@@ -3,8 +3,7 @@ package com.lifegadget.planck.services;
 import com.lifegadget.planck.core.errors.DatabaseException;
 import com.lifegadget.planck.core.errors.ValidationException;
 import com.lifegadget.planck.database.sqlModels.User;
-import com.lifegadget.planck.dto.UserDTO;
-import com.lifegadget.planck.repositories.UserRepository;
+import com.lifegadget.planck.repositories.sql.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -15,9 +14,9 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User getUserById(Long userId){
+    public User getUserById(Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        if(userOptional.isEmpty()) {
+        if (userOptional.isEmpty()) {
             throw new ValidationException("No user present with id - " + userId);
         }
         return userOptional.get();

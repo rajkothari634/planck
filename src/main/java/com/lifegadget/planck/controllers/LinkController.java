@@ -6,6 +6,7 @@ import com.lifegadget.planck.dto.LinkDTO;
 import com.lifegadget.planck.facades.LinkFacade;
 import com.lifegadget.planck.services.LinkService;
 import com.lifegadget.planck.services.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,8 @@ public class LinkController {
     }
     @ResponseStatus(value = HttpStatus.OK)
     @GetMapping("/{shortCode}")
-    public Link getLink(@PathVariable String shortCode){
+    public Link getLink(@PathVariable String shortCode, HttpServletRequest httpServletRequest){
         System.out.println("shortCode - " + shortCode);
-       return linkFacade.getLink(shortCode);
+       return linkFacade.getLink(shortCode, httpServletRequest);
     }
 }
