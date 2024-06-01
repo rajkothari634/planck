@@ -16,6 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 
 @Document(collection = "link_activity_logs")
 @AllArgsConstructor
@@ -28,7 +29,6 @@ public class LinkActivityLog implements Serializable {
 
     @NotNull
     @Indexed
-    @HashIndexed
     private Long linkId;
 
     private String ipAddress;
@@ -40,8 +40,7 @@ public class LinkActivityLog implements Serializable {
 
     private String device;
 
-    @Field("jsonField")
-    private JsonNode requestData;
+    private HashMap<String, Object> requestData;
 
     @CreatedDate
     private Date createdAt;
